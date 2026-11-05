@@ -15,7 +15,12 @@ import java.time.LocalDateTime;
 public class Notification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_seq")
+    @SequenceGenerator(
+            name = "notification_seq",
+            sequenceName = "notification_id_seq",   // sequence BIGSERIAL created in Phase 3
+            allocationSize = 50
+    )
     private Long id;
 
     @Column(name = "sender_id")
